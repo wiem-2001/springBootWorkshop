@@ -1,9 +1,8 @@
 package com.esprit.tic.twin.project_backend.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.Set;
 
 @Entity
 public class Bloc {
@@ -12,5 +11,9 @@ public class Bloc {
     private long idBloc;
     private String nomBloc;
     private long capaciteBloc ;
+    @ManyToOne
+    private Foyer foyer;
+    @OneToMany(mappedBy = "bloc")
+    private Set<Chambre> chambreSet;
 
 }

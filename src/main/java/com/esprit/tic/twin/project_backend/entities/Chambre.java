@@ -1,9 +1,8 @@
 package com.esprit.tic.twin.project_backend.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.Set;
 
 @Entity
 public class Chambre {
@@ -12,5 +11,14 @@ public class Chambre {
 
     private long idChmbre;
     private long numeroChambre;
+    @Enumerated(EnumType.STRING)
     private TypeChambre typeC;
+
+    @ManyToOne
+    private Bloc bloc;
+
+    @OneToMany
+    private Set<Reservation> reservationSet;
+
+
 }

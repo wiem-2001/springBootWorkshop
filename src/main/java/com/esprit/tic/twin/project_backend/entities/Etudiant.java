@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.Set;
+
 @Entity
 public class Etudiant {
     @Id
@@ -19,6 +21,10 @@ public class Etudiant {
     private Date dateNaissance;*/
 
     private LocalDate dateNaissance;
+    @ManyToMany(cascade = CascadeType.ALL)
+    private Set<Reservation> reservations ;
 
+    @OneToMany(mappedBy = "etudiant")
+    private Set<Tache> tacheSet;
 }
 

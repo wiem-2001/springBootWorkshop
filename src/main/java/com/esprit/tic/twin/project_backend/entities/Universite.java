@@ -1,9 +1,6 @@
 package com.esprit.tic.twin.project_backend.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Universite {
@@ -13,4 +10,7 @@ public class Universite {
     private long idUniversite;
 private String nomUniversite;
 private String addresse;
+
+@OneToOne
+    private Foyer foyer;
 }

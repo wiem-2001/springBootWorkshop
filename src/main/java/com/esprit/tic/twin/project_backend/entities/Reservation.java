@@ -1,11 +1,10 @@
 package com.esprit.tic.twin.project_backend.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.util.Date;
+import java.util.Set;
+
 @Entity
 public class Reservation {
     @Id
@@ -14,4 +13,8 @@ public class Reservation {
     private String idReservation;
     private Date anneeUniversitaire;
     private boolean estValide;
+
+    @ManyToMany(mappedBy = "reservations")
+    private Set<Etudiant> etudiantSet;
+
 }

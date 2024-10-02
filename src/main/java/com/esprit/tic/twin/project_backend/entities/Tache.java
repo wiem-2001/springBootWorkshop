@@ -1,9 +1,6 @@
 package com.esprit.tic.twin.project_backend.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jdk.jfr.Enabled;
 
 import java.time.LocalDate;
@@ -16,5 +13,9 @@ public class Tache {
     private LocalDate dateTache;
     private Integer duree;
     private Float tarifHoraire;
+    @Enumerated(EnumType.STRING)
     private TypeTache typeTache;
+
+    @ManyToOne
+    private Etudiant etudiant;
 }
