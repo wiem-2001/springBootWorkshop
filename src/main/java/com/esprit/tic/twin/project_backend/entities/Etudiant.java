@@ -1,10 +1,9 @@
 package com.esprit.tic.twin.project_backend.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 @Entity
 public class Etudiant {
@@ -16,6 +15,10 @@ public class Etudiant {
     private String prenomEt;
     private  long cin;
     private String ecole;
-    private Date dateNaissance;
+   /* @Temporal(TemporalType.DATE)
+    private Date dateNaissance;*/
+
+    private LocalDate dateNaissance;
+
 }
 
