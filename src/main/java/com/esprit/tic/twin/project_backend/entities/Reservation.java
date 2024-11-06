@@ -8,8 +8,6 @@ import java.util.Set;
 @Entity
 public class Reservation {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private String idReservation;
     private Date anneeUniversitaire;
     private boolean estValide;

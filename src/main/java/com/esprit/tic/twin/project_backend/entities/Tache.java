@@ -18,4 +18,7 @@ public class Tache {
 
     @ManyToOne
     private Etudiant etudiant;
+
+    @OneToOne(mappedBy = "tache", cascade = CascadeType.ALL)
+    private Etudiant etudiantTache;
 }

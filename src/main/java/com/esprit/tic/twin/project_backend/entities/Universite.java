@@ -11,6 +11,6 @@ public class Universite {
 private String nomUniversite;
 private String addresse;
 
-@OneToOne
+@OneToOne(mappedBy = "universtie")
     private Foyer foyer;
 }

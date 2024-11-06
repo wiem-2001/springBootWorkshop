@@ -13,8 +13,8 @@ public class Foyer {
     private String nomFoyer;
     private long capaciteFoyer;
 
-    @OneToOne(mappedBy = "foyer" ,cascade = CascadeType.ALL)
-    private Universite universite;
+    @OneToOne(cascade = CascadeType.ALL)
+    private Universite universtie;
 
     @OneToMany(cascade = CascadeType.ALL , mappedBy = "foyer")
     private Set<Bloc> blocs;

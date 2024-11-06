@@ -19,12 +19,17 @@ public class Etudiant {
     private String ecole;
    /* @Temporal(TemporalType.DATE)
     private Date dateNaissance;*/
+   @Enumerated(EnumType.STRING)
 
+    private TypeEtudiant typeEtudiant ;
     private LocalDate dateNaissance;
     @ManyToMany(cascade = CascadeType.ALL)
     private Set<Reservation> reservations ;
 
     @OneToMany(mappedBy = "etudiant")
     private Set<Tache> tacheSet;
+
+    @OneToOne
+    private Tache tache;
 }
 
