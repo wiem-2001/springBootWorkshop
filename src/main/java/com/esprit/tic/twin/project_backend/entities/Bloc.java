@@ -1,19 +1,28 @@
 package com.esprit.tic.twin.project_backend.entities;
 
 import jakarta.persistence.*;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 import java.util.Set;
 
 @Entity
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
+@ToString
 public class Bloc {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long idBloc;
-    private String nomBloc;
-    private long capaciteBloc ;
+     long idBloc;
+     String nomBloc;
+     long capaciteBloc ;
     @ManyToOne
-    private Foyer foyer;
+     Foyer foyer;
     @OneToMany(mappedBy = "bloc")
-    private Set<Chambre> chambreSet;
+     Set<Chambre> chambreSet;
+
 
 }

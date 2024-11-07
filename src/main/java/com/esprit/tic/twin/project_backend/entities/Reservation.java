@@ -1,18 +1,26 @@
 package com.esprit.tic.twin.project_backend.entities;
 
 import jakarta.persistence.*;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 import java.util.Date;
 import java.util.Set;
 
 @Entity
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
+@ToString
 public class Reservation {
     @Id
-    private String idReservation;
-    private Date anneeUniversitaire;
-    private boolean estValide;
+     String idReservation;
+     Date anneeUniversitaire;
+     boolean estValide;
 
     @ManyToMany(mappedBy = "reservations")
-    private Set<Etudiant> etudiantSet;
+     Set<Etudiant> etudiantSet;
 
 }

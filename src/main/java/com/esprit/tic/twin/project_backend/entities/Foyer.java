@@ -1,21 +1,28 @@
 package com.esprit.tic.twin.project_backend.entities;
 
 import jakarta.persistence.*;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 import java.util.Set;
 
 @Entity
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
+@ToString
 public class Foyer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
-    private long idFoyer;
-    private String nomFoyer;
-    private long capaciteFoyer;
+     long idFoyer;
+     String nomFoyer;
+     long capaciteFoyer;
 
     @OneToOne(cascade = CascadeType.ALL)
-    private Universite universtie;
+     Universite universtie;
 
     @OneToMany(cascade = CascadeType.ALL , mappedBy = "foyer")
-    private Set<Bloc> blocs;
+     Set<Bloc> blocs;
 }

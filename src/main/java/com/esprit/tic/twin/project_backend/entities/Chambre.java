@@ -1,24 +1,31 @@
 package com.esprit.tic.twin.project_backend.entities;
 
 import jakarta.persistence.*;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 import java.util.Set;
 
 @Entity
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
+@ToString
 public class Chambre {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
-    private long idChmbre;
-    private long numeroChambre;
+     long idChmbre;
+     long numeroChambre;
     @Enumerated(EnumType.STRING)
-    private TypeChambre typeC;
+     TypeChambre typeC;
 
     @ManyToOne
-    private Bloc bloc;
+     Bloc bloc;
 
     @OneToMany
-    private Set<Reservation> reservationSet;
+     Set<Reservation> reservationSet;
 
 
 }
