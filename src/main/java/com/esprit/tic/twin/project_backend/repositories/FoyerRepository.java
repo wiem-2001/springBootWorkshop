@@ -11,7 +11,8 @@ import java.util.List;
 public interface FoyerRepository extends JpaRepository<Foyer,Long> {
     Foyer findByNomFoyer(String nomFoyer);
     Foyer findByNomFoyerAndCapaciteFoyer(String nomFoyer,Long capacite);
-    List<Foyer> findByUniversiteNomUniversite(String nom);
+    List<Foyer> findByUniversite_NomUniversite(String nomUniversite);
+
     List<Foyer> findByBlocsNomBloc(String s);
-    List<Foyer> findByUniversiteNomUniversiteAndBlocsNomBloc(String nom);
+    List<Foyer> findByUniversiteNomUniversiteAndBlocsNomBloc(String nomUniversite, String nomBloc);
 }
