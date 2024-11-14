@@ -4,7 +4,7 @@ import com.esprit.tic.twin.project_backend.entities.Foyer;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-@Service
+
 public interface IFoyerService {
     List<Foyer> retrieveAll();
 
