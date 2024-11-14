@@ -7,4 +7,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 
 public interface UniversityRepository extends JpaRepository<Universite,Long> {
+
+    Universite findUniversitesByNomUniversite(String nom);
 }
