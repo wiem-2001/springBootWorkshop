@@ -2,7 +2,9 @@ package com.esprit.tic.twin.project_backend.controllers;
 
 import com.esprit.tic.twin.project_backend.entities.Bloc;
 import com.esprit.tic.twin.project_backend.entities.Foyer;
+import com.esprit.tic.twin.project_backend.entities.Universite;
 import com.esprit.tic.twin.project_backend.services.IBlocService;
+import com.esprit.tic.twin.project_backend.services.IChambreService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -21,6 +23,7 @@ import java.util.stream.Collectors;
 public class BlocController {
 
     private final IBlocService blocService;
+    private final IChambreService chambreService;
 
     // Récupérer tous les blocs
     @GetMapping("/retrieve-all-blocs")
@@ -96,5 +99,11 @@ public class BlocController {
             log.error("Erreur lors de la suppression du bloc : ", e);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    @PutMapping("/addFoyerWithBloc")
+    public Foyer addFoyerWithBloc(@RequestBody Foyer f)
+    {
+        return blocService.addFoyerWithBloc(f);
     }
 }

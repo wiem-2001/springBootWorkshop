@@ -1,17 +1,21 @@
 package com.esprit.tic.twin.project_backend.services;
 
 import com.esprit.tic.twin.project_backend.entities.Bloc;
+import com.esprit.tic.twin.project_backend.entities.Foyer;
 import com.esprit.tic.twin.project_backend.repositories.BlocRepository;
+import com.esprit.tic.twin.project_backend.repositories.FoyerRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 @AllArgsConstructor
 public class BlocServiceImp implements IBlocService{
 BlocRepository blocRepository;
+FoyerRepository foyerRepository;
     @Override
     public List<Bloc> retrieveAll() {
         return blocRepository.findAll();
@@ -36,4 +40,17 @@ BlocRepository blocRepository;
     public void removeBloc(Long idBloc) {
         blocRepository.deleteById(idBloc);
     }
+
+    @Override
+    public Foyer addFoyerWithBloc(Foyer f) {
+        Set<Bloc> blocs = f.getBlocs();
+        for (Bloc bloc:blocs)
+        {
+            bloc.setFoyer(f);
+        }
+        foyerRepository.save(f);
+        return f;
+    }
+
+
 }

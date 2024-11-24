@@ -44,14 +44,40 @@ public class FoyerServiceImp implements IFoyerService{
     @Override
     public Universite addFoyerAuniversite(long idFoyer, String nomUniversite) {
         Universite universite = universityRepository.findUniversitesByNomUniversite(nomUniversite);
-        // université parent dans l'association, donc affecter le foyer au parent
+        // université est le fils
         Foyer foyer = foyerRepository.findById(idFoyer).get();
-        universite.setFoyer(foyer);
+        //parent.set(child)
+        foyer.setUniversite(universite);
         // sauvegarder l'objet université avec le foyer affecté
+        //sauvegarder l'objet modifié
         universityRepository.save(universite);
         return universite;
-
     }
 
+    @Override
+    public Universite desaffecterFoyerAUniversite(Long idFoyer) {
+        // Step 1: Retrieve the foyer by id
+        Foyer foyer = foyerRepository.findById(idFoyer)
+                .orElseThrow(() -> new RuntimeException("Foyer introuvable"));
+
+        // Step 2: Check if the foyer is associated with a university
+        Universite universite = foyer.getUniversite();  // This is assuming Foyer has a reference to Universite
+
+        if (universite != null) {
+            // Step 3: Remove the link from Foyer (set Universite to null in the Foyer entity)
+            foyer.setUniversite(null);  // Unlink the Foyer from the Universite
+
+            // Step 4: Save the updated Foyer entity (set the 'idUniversite' to null in DB)
+            foyerRepository.save(foyer);
+
+            // Step 5: Optionally, return the updated Universite (or just null if not needed)
+            return universite;
+        }
+
+        throw new RuntimeException("No university linked to this foyer");
+    }
 
 }
+
+
+

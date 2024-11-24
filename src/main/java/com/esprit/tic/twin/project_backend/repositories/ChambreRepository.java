@@ -7,12 +7,15 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Set;
 
 @Repository
 public interface ChambreRepository extends JpaRepository<Chambre,Long> {
 
 
     List<Chambre> findByBlocNomBloc(String nom);
+    Chambre findByNumeroChambre(Long numerochambre);
+
 
     List<Chambre> findByTypeCAndBlocNomBloc(String type,String nom);
     List<Chambre> findByReservationSet_EstValide(Boolean valide);
@@ -26,5 +29,7 @@ public interface ChambreRepository extends JpaRepository<Chambre,Long> {
     List<Chambre> retrieveChambreByValidity(@Param("valide")Boolean valide);
     @Query("select c from Chambre c where c.bloc.nomBloc=:nom and c.bloc.capaciteBloc>:nombre")
     List<Chambre> retrieveChambreByNomBlocAndCapacity(@Param("nom")String nom,@Param("nombre")long nombre);
+
+
 }
 

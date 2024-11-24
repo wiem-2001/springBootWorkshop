@@ -1,5 +1,6 @@
 package com.esprit.tic.twin.project_backend.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -27,6 +28,7 @@ public class Foyer {
      }
 
     @OneToOne(cascade = CascadeType.ALL)
+    @JsonIgnore
      Universite universite;
 
     @OneToMany(cascade = CascadeType.ALL , mappedBy = "foyer")

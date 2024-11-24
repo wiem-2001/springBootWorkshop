@@ -1,5 +1,6 @@
 package com.esprit.tic.twin.project_backend.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -21,7 +22,8 @@ public class Bloc {
      long capaciteBloc ;
     @ManyToOne
      Foyer foyer;
-    @OneToMany(mappedBy = "bloc")
+    @OneToMany(mappedBy = "bloc", cascade = CascadeType.ALL)
+    @JsonIgnore
      Set<Chambre> chambreSet;
 
 
