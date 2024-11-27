@@ -37,5 +37,8 @@ public class Etudiant {
 
     @OneToOne
      Tache tache;
+
+    @Column(nullable = false)
+    Float montantInscription = 500.0f;
 }
 

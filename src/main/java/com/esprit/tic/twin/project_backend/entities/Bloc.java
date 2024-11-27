@@ -17,10 +17,11 @@ import java.util.Set;
 public class Bloc {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-     long idBloc;
+     Long idBloc;
      String nomBloc;
      long capaciteBloc ;
     @ManyToOne
+    @JsonIgnore
      Foyer foyer;
     @OneToMany(mappedBy = "bloc", cascade = CascadeType.ALL)
     @JsonIgnore

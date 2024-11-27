@@ -2,6 +2,7 @@ package com.esprit.tic.twin.project_backend.services;
 
 import com.esprit.tic.twin.project_backend.entities.Bloc;
 import com.esprit.tic.twin.project_backend.entities.Chambre;
+import com.esprit.tic.twin.project_backend.entities.TypeChambre;
 import com.esprit.tic.twin.project_backend.repositories.BlocRepository;
 import com.esprit.tic.twin.project_backend.repositories.ChambreRepository;
 import lombok.AllArgsConstructor;
@@ -40,4 +41,16 @@ public class ChambreServiceImp implements IChambreService{
         blocRepository.save(bloc);
 return bloc ;
     }
+
+    @Override
+    public List<Chambre> getChambresParNomBloc(String nomBloc) {
+        List<Chambre> chambres=chambreRepository.findByBlocNomBloc(nomBloc);
+        return chambres ;
+    }
+
+    @Override
+    public long nbChambreParTypeEtBloc(TypeChambre type, long idBloc) {
+        return chambreRepository.countChambreByTypeCAndBlocIdBloc(type,idBloc);
+    }
+
 }

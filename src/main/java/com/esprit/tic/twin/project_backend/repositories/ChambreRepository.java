@@ -1,10 +1,12 @@
 package com.esprit.tic.twin.project_backend.repositories;
 
 import com.esprit.tic.twin.project_backend.entities.Chambre;
+import com.esprit.tic.twin.project_backend.entities.TypeChambre;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 import java.util.Set;
@@ -30,6 +32,7 @@ public interface ChambreRepository extends JpaRepository<Chambre,Long> {
     @Query("select c from Chambre c where c.bloc.nomBloc=:nom and c.bloc.capaciteBloc>:nombre")
     List<Chambre> retrieveChambreByNomBlocAndCapacity(@Param("nom")String nom,@Param("nombre")long nombre);
 
-
+    @Query("select count(c) from Chambre c where c.bloc.idBloc=:id_bloc and c.typeC=:type_c")
+    Long countChambreByTypeCAndBlocIdBloc(@Param("type_c") TypeChambre type, @Param("id_bloc") Long idBloc);
 }
 

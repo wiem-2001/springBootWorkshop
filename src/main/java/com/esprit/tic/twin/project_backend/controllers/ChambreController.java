@@ -2,6 +2,7 @@ package com.esprit.tic.twin.project_backend.controllers;
 
 import com.esprit.tic.twin.project_backend.entities.Bloc;
 import com.esprit.tic.twin.project_backend.entities.Chambre;
+import com.esprit.tic.twin.project_backend.entities.TypeChambre;
 import com.esprit.tic.twin.project_backend.services.IChambreService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -22,6 +23,16 @@ public class ChambreController {
     public Bloc affecterChambresABloc(@RequestBody List<Long> numChambre, @PathVariable ("nombloc") String nomBloc)
     {
        return chambreService.affecterChambresABloc(numChambre,nomBloc);
+    }
+
+    @GetMapping("/getChambresParNomBloc/{nomBloc}")
+    public List<Chambre> getChambresParNomBloc(@PathVariable("nomBloc") String nomBloc) {
+        return chambreService.getChambresParNomBloc(nomBloc);
+    }
+
+    @GetMapping("/nbChambreParTypeEtBloc/{typec}/{idb}")
+    public long nbChambreParTypeEtBloc(@PathVariable("typec") TypeChambre type,@PathVariable("idb") long idBloc) {
+        return chambreService.nbChambreParTypeEtBloc(type,idBloc);
     }
 
 }

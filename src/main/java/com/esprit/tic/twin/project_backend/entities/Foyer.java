@@ -32,5 +32,6 @@ public class Foyer {
      Universite universite;
 
     @OneToMany(cascade = CascadeType.ALL , mappedBy = "foyer")
+    @JsonIgnore
      Set<Bloc> blocs;
 }

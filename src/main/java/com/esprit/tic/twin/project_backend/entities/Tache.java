@@ -1,5 +1,6 @@
 package com.esprit.tic.twin.project_backend.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jdk.jfr.Enabled;
 import lombok.*;
@@ -24,8 +25,10 @@ public class Tache {
      TypeTache typeTache;
 
     @ManyToOne
+    @JsonIgnore
      Etudiant etudiant;
 
     @OneToOne(mappedBy = "tache", cascade = CascadeType.ALL)
+    @JsonIgnore
      Etudiant etudiantTache;
 }

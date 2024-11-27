@@ -1,5 +1,6 @@
 package com.esprit.tic.twin.project_backend.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -22,9 +23,11 @@ public class Chambre {
      TypeChambre typeC;
 
     @ManyToOne
+    @JsonIgnore
      Bloc bloc;
 
     @OneToMany
+    @JsonIgnore
      Set<Reservation> reservationSet;
 
 
