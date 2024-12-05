@@ -29,4 +29,5 @@ public class TacheServiceImp implements  ITacheService{
         etudiantRepository.save(etudiant);
         return tasks;
     }
+    //ken 3tani bch nsavi list a la fois mathalan : addtasks donc naaml : tacheRepositor.saveAll()
 }

@@ -7,6 +7,7 @@ import com.esprit.tic.twin.project_backend.repositories.BlocRepository;
 import com.esprit.tic.twin.project_backend.repositories.ChambreRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
@@ -51,6 +52,24 @@ return bloc ;
     @Override
     public long nbChambreParTypeEtBloc(TypeChambre type, long idBloc) {
         return chambreRepository.countChambreByTypeCAndBlocIdBloc(type,idBloc);
+    }
+    @Scheduled(fixedRate = 300000)
+   public void pourcentageChambreParTypeChambre() {
+     Double totalChambre = chambreRepository.countChambre();
+     Double totalChambreSimple = chambreRepository.countChambreByTypeC(TypeChambre.SIMPLE);
+     Double totalChambreDouble = chambreRepository.countChambreByTypeC(TypeChambre.DOUBLE);
+     Double totalChambreTriple = chambreRepository.countChambreByTypeC(TypeChambre.TRIPLE);
+
+     Double pSimple= totalChambreSimple/totalChambre;
+     Double pDouble= totalChambreDouble/totalChambre;
+     Double pTriple= totalChambreTriple/totalChambre;
+     log.info("nbTotalChambre : "+totalChambre);
+     log.info("le pourcentage de chambre pour le type SIMPLE : "+pSimple);
+     log.info("le pourcentage de chambre pour le type Double : "+pDouble);
+     log.info("le pourcentage de chambre pour le type TRIPLE : "+pTriple);
+
+
+
     }
 
 }

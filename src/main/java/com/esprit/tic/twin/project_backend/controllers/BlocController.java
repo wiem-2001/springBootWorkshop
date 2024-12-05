@@ -2,12 +2,10 @@ package com.esprit.tic.twin.project_backend.controllers;
 
 import com.esprit.tic.twin.project_backend.entities.Bloc;
 import com.esprit.tic.twin.project_backend.entities.Foyer;
-import com.esprit.tic.twin.project_backend.entities.Universite;
 import com.esprit.tic.twin.project_backend.services.IBlocService;
 import com.esprit.tic.twin.project_backend.services.IChambreService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -106,4 +104,6 @@ public class BlocController {
     {
         return blocService.addFoyerWithBloc(f);
     }
+
+
 }

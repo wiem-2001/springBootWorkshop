@@ -23,7 +23,6 @@ public class Chambre {
      TypeChambre typeC;
 
     @ManyToOne
-    @JsonIgnore
      Bloc bloc;
 
     @OneToMany

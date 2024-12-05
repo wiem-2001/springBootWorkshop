@@ -14,7 +14,6 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-
 @ToString
 public class Foyer {
     @Id
@@ -31,7 +30,6 @@ public class Foyer {
     @JsonIgnore
      Universite universite;
 
-    @OneToMany(cascade = CascadeType.ALL , mappedBy = "foyer")
-    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL , mappedBy = "foyer",fetch = FetchType.EAGER)
      Set<Bloc> blocs;
 }
