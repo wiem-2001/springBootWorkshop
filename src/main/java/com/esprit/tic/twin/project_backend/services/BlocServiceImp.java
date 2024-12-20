@@ -8,9 +8,7 @@ import com.esprit.tic.twin.project_backend.repositories.ChambreRepository;
 import com.esprit.tic.twin.project_backend.repositories.FoyerRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;

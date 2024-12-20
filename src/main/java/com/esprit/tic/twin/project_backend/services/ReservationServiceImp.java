@@ -1,8 +1,10 @@
 package com.esprit.tic.twin.project_backend.services;
 
 import com.esprit.tic.twin.project_backend.entities.Chambre;
+import com.esprit.tic.twin.project_backend.entities.Etudiant;
 import com.esprit.tic.twin.project_backend.entities.Reservation;
 import com.esprit.tic.twin.project_backend.repositories.ChambreRepository;
+import com.esprit.tic.twin.project_backend.repositories.EtudiantRepository;
 import com.esprit.tic.twin.project_backend.repositories.ReservationRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,19 +20,41 @@ import java.util.List;
 @Slf4j
 public class ReservationServiceImp implements IReservationService {
     ReservationRepository reservationRepository;
-    ChambreRepository chambreRepository ;
+    ChambreRepository chambreRepository;
+    EtudiantRepository etudiantRepository;
 
     @Override
     public List<Reservation> getReservationParAnneeUniversitaire(Date dateDebut, Date dateFin) {
-        return reservationRepository.retrieveReservationParAnneeUniversitaire(dateDebut,dateFin);
+        return reservationRepository.retrieveReservationParAnneeUniversitaire(dateDebut, dateFin);
     }
-@Scheduled(fixedRate = 300000)
-    void nbPlacesDisponiblesParChambreAnneeEnCours(){
-        List < Chambre> chambres =chambreRepository.findAll();
-        for (Chambre chambre : chambres){
+
+    @Scheduled(fixedRate = 300000)
+    void nbPlacesDisponiblesParChambreAnneeEnCours() {
+        List<Chambre> chambres = chambreRepository.findAll();
+        for (Chambre chambre : chambres) {
             Long nb = reservationRepository.countReservationDisponibleByAnneeEnCours(chambre.getNumeroChambre());
-            log.info("nb place restantes en "+ LocalDate.now()+" pour la chambre "+chambre.getIdChmbre()+" est egale a " +nb);
+            log.info("nb place restantes en " + LocalDate.now() + " pour la chambre " + chambre.getIdChmbre() + " est egale a " + nb);
         }
 
     }
+
+    public Reservation ajouterReservationEtAssignerAChambreEtAEtudiant(Reservation res, Long
+            numChambre, long cin) {
+        Chambre chambre = chambreRepository.findByNumeroChambre(numChambre);
+        Etudiant etudiant = etudiantRepository.findByCin(cin);
+        Long nb = reservationRepository.countReservationDisponibleByAnneeEnCours(chambre.getNumeroChambre());
+        if (nb != 0) {
+            String cinReservation = chambre.getNumeroChambre() + chambre.getNumeroChambre() + res.getAnneeUniversitaire().toString();
+            res.setIdReservation(cinReservation);
+            reservationRepository.save(res);
+            chambre.getReservationSet().add(res);
+            etudiant.getReservations().add(res);
+            etudiantRepository.save(etudiant);
+            chambreRepository.save(chambre);
+
+
+    }
+        return res;
+    }
+
 }

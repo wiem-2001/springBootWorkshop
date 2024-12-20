@@ -1,13 +1,15 @@
 package com.esprit.tic.twin.project_backend.controllers;
 
+import com.esprit.tic.twin.project_backend.entities.Etudiant;
 import com.esprit.tic.twin.project_backend.entities.Tache;
 import com.esprit.tic.twin.project_backend.services.ITacheService;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.util.Date;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 @RestController
@@ -15,8 +17,14 @@ import java.util.List;
 public class TacheController {
     ITacheService tacheService;
 
-    @PutMapping("/addTasksAndAffectToEtudiant/{nomEt}/{prenomEt}")
-    public List<Tache> addTasksAndAffectToEtudiant(@RequestBody List<Tache> tasks, @PathVariable("nomEt") String nomEt, @PathVariable("prenomEt") String prenomEt){
-        return  tacheService.addTasksAndAffectToEtudiant(tasks,nomEt,prenomEt);
+    @GetMapping("/studentsPerformanceRanking")
+    public LinkedHashMap<Float, Etudiant> studentsPerformanceRanking() {
+        return tacheService.studentsPerformanceRanking();
     }
+
+    @GetMapping("/taches/{dateDebut}/{dateFin}")
+    public Integer students(@PathVariable("dateDebut") LocalDate dateDebut, @PathVariable("dateFin") LocalDate dateFin) {
+        return tacheService.findAllStudents(dateDebut,dateFin);
+    }
+
 }

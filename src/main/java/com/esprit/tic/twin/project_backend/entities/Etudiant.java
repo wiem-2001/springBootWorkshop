@@ -15,7 +15,6 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@ToString
 public class Etudiant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,9 +33,6 @@ public class Etudiant {
 
     @OneToMany(mappedBy = "etudiant")
      Set<Tache> tacheSet;
-
-    @OneToOne
-     Tache tache;
 
     @Column(nullable = false)
     Float montantInscription = 500.0f;

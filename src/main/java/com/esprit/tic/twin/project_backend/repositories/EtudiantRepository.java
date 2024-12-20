@@ -8,4 +8,6 @@ import org.springframework.stereotype.Repository;
 public interface EtudiantRepository extends JpaRepository<Etudiant,Long>
 {
     Etudiant findEtudiantByNomEtAndPrenomEt(String nom,String prenom);
+
+    Etudiant findByCin(Long cin);
 }

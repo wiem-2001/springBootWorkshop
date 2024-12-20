@@ -57,8 +57,7 @@ public class FoyerServiceImp implements IFoyerService{
     @Override
     public Universite desaffecterFoyerAUniversite(Long idFoyer) {
         // Step 1: Retrieve the foyer by id
-        Foyer foyer = foyerRepository.findById(idFoyer)
-                .orElseThrow(() -> new RuntimeException("Foyer introuvable"));
+        Foyer foyer = foyerRepository.findById(idFoyer).get();
 
         // Step 2: Check if the foyer is associated with a university
         Universite universite = foyer.getUniversite();  // This is assuming Foyer has a reference to Universite

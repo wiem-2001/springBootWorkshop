@@ -28,7 +28,7 @@ public class Tache {
     @JsonIgnore
      Etudiant etudiant;
 
-    @OneToOne(mappedBy = "tache", cascade = CascadeType.ALL)
-    @JsonIgnore
-     Etudiant etudiantTache;
+
+    @Enumerated(EnumType.STRING)
+    EtatTache etatTache;
 }
