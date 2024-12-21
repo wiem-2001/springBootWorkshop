@@ -17,9 +17,9 @@ import java.util.List;
 public class TacheController {
     ITacheService tacheService;
 
-    @GetMapping("/studentsPerformanceRanking")
-    public LinkedHashMap<Float, Etudiant> studentsPerformanceRanking() {
-        return tacheService.studentsPerformanceRanking();
+    @GetMapping("/studentsPerformanceRanking/{dateDebut}/{dateFin}")
+    public LinkedHashMap<Float, Etudiant> studentsPerformanceRanking(@PathVariable LocalDate dateDebut,@PathVariable LocalDate dateFin) {
+        return tacheService.studentsPerformanceRanking(dateDebut,dateFin);
     }
 
     @GetMapping("/taches/{dateDebut}/{dateFin}")

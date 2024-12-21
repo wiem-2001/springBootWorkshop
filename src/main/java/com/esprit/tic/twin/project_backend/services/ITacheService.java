@@ -13,8 +13,8 @@ import java.util.List;
 public interface ITacheService {
     Integer findAllStudents(LocalDate dateDebut, LocalDate dateFin);
 
-    float studentsEfficacity(Etudiant etudiant);
-    float studentRevenu(Etudiant etudiant);
-    float studentVersatility(Etudiant etudiant);
-    LinkedHashMap<Float, Etudiant> studentsPerformanceRanking();
+    float studentsEfficacity(Etudiant etudiant,LocalDate dateDebut,LocalDate dateFin);
+    float studentRevenu(Etudiant etudiant,LocalDate dateDebut,LocalDate dateFin);
+    float studentVersatility(Etudiant etudiant,LocalDate dateDebut,LocalDate dateFin);
+    LinkedHashMap<Float, Etudiant> studentsPerformanceRanking(LocalDate dateDebut,LocalDate dateFin);
 }
